@@ -1,0 +1,61 @@
+<h1>Heroe<small></small></h1>
+<mat-divider class="mb-2"></mat-divider>
+  <div class="grid">
+    <div class="col-12 sm:col-6">
+      <mat-card>
+        <mat-card-content>
+          <form class="grid" [formGroup]="heroForm" (ngSubmit)="onSubmit()">
+            <mat-form-field class="col-12 sm:col-6">
+              <mat-label>Super Hero</mat-label>
+              <input type="text" matInput required formControlName="superhero">
+            </mat-form-field>
+            <mat-form-field class="col-12 sm:col-6">
+              <mat-label>Alter ego</mat-label>
+              <input type="text" matInput required formControlName="alter_ego">
+            </mat-form-field>
+            <mat-form-field class="col-12">
+              <mat-label>Primera aparicion</mat-label>
+              <input type="text" matInput required formControlName="first_appearance">
+            </mat-form-field>
+            <mat-form-field class="col-12">
+              <mat-label>Personajes</mat-label>
+              <input type="text" matInput required formControlName="characters">
+            </mat-form-field>
+            <mat-form-field class="col-12">
+              <mat-label>Publicador</mat-label>
+              <mat-select required formControlName="publisher">
+                <mat-option *ngFor="let item of publishers"
+                  [value]="item.id">
+                  {{ item.desc }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-12">
+              <mat-label>Imagen Alternativa</mat-label>
+              <input type="text" matInput formControlName="alt_img">
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+        <div class="flex justify-content-between p-2">
+          <button mat-flat-button color="warn" *ngIf="currentHero.id" (click)="onDeleteHero()">
+            <mat-icon>
+              delete
+            </mat-icon>
+            Borrar</button>
+          <span class="spacer"></span>
+          <button mat-flat-button color="primary" (click)="onSubmit()">
+            <mat-icon>
+              save
+            </mat-icon>
+            Guardar</button>
+        </div>
+
+      </mat-card>
+    </div>
+    <div class="col-12 sm:col-6">
+      <mat-card>
+        <img [src]="currentHero | heroImage" alt="imagen del heroe" mat-card-image>
+      </mat-card>
+    </div>
+  </div>
+
